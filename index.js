@@ -28,15 +28,15 @@ bot.loadPlugin(cmd)
 
 
 bot.on('login',function(){
-	console.log("Logged In")
-	bot.chat("hello");
+        console.log("Logged In")
+        bot.chat("hello");
 });
 
 bot.on('time', function(time) {
-	if(nightskip == "true"){
-	if(bot.time.timeOfDay >= 13000){
-	bot.chat('/time set day')
-	}}
+        if(nightskip == "true"){
+        if(bot.time.timeOfDay >= 13000){
+        bot.chat('/time set day')
+        }}
     if (connected <1) {
         return;
     }
@@ -72,3 +72,14 @@ bot.on('death',function() {
     bot.emit("respawn")
 });
 
+bot.on('error', (err) => {
+    console.log('Error:', err);
+});
+
+bot.on('kicked', (reason) => {
+    console.log('Kicked:', reason);
+});
+
+bot.on('end', () => {
+    console.log('Bot disconnected');
+});
