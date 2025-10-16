@@ -14,6 +14,7 @@ var maxrandom = 5;
 var host = data["ip"];
 var username = data["name"]
 var nightskip = data["auto-night-skip"]
+const port = process.env.PORT || 4000 
 
 function getRandomArbitrary(min, max) {
        return Math.random() * (max - min) + min;
@@ -90,5 +91,12 @@ function createBot() {
         setTimeout(createBot, 10000);
     });
 }
-
+const http = require('http');
+const PORT = process.env.PORT || 3000;
+http.createServer((req, res) => {
+  res.writeHead(200, { 'Content-Type': 'text/plain' });
+  res.end('Bot is running!\n');
+}).listen(PORT, () => {
+  console.log(`Web server listening on port ${PORT}`);
+});
 createBot();
